@@ -1,0 +1,141 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://table.tscn" type="PackedScene" id=1]
+[ext_resource path="res://item/components/PSU-VEGA UnlimitedPower2.tscn" type="PackedScene" id=2]
+[ext_resource path="res://item/components/CPU Cooler-Fujin Black.tscn" type="PackedScene" id=3]
+[ext_resource path="res://main.gd" type="Script" id=4]
+[ext_resource path="res://item/components/CPU-Ino G7-4779k.tscn" type="PackedScene" id=6]
+[ext_resource path="res://item/components/Storage-Striker HS.tscn" type="PackedScene" id=7]
+[ext_resource path="res://item/components/Memory-Striker D.tscn" type="PackedScene" id=9]
+[ext_resource path="res://item/components/Case-Sentinel XX.tscn" type="PackedScene" id=10]
+[ext_resource path="res://item/components/Motherboard-MEGABYTE Z99 GH-08.tscn" type="PackedScene" id=11]
+[ext_resource path="res://player/player.tscn" type="PackedScene" id=12]
+[ext_resource path="res://gui/gui.gd" type="Script" id=14]
+
+[sub_resource type="CubeMesh" id=1]
+flip_faces = true
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 0.784314, 0.784314, 0.784314, 1 )
+
+[sub_resource type="QuadMesh" id=3]
+
+[sub_resource type="SpatialMaterial" id=4]
+albedo_color = Color( 0.301961, 0.301961, 0.301961, 1 )
+
+[sub_resource type="ConcavePolygonShape" id=5]
+data = PoolVector3Array( -0.5, -0.5, 0, -0.5, 0.5, 0, 0.5, 0.5, 0, -0.5, -0.5, 0, 0.5, 0.5, 0, 0.5, -0.5, 0 )
+
+[sub_resource type="StyleBoxFlat" id=9]
+bg_color = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
+
+[node name="main" type="Spatial"]
+script = ExtResource( 4 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
+shadow_enabled = true
+shadow_color = Color( 0.596078, 0.596078, 0.596078, 1 )
+
+[node name="room" type="MeshInstance" parent="."]
+transform = Transform( 5.7925, 0, 0, 0, 1.5, 0, 0, 0, 5.71209, 0, 1.5, 0 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 2 )
+
+[node name="floor" type="MeshInstance" parent="room"]
+transform = Transform( 2, 0, 0, 0, -8.74228e-08, 1, 0, -2, -4.37114e-08, 0, -0.973632, 0 )
+mesh = SubResource( 3 )
+material/0 = SubResource( 4 )
+
+[node name="StaticBody" type="StaticBody" parent="room/floor"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape" type="CollisionShape" parent="room/floor/StaticBody"]
+shape = SubResource( 5 )
+
+[node name="table" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0508652, -3.49941 )
+
+[node name="player" parent="." instance=ExtResource( 12 )]
+
+[node name="gui" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -10.0
+script = ExtResource( 14 )
+
+[node name="fps" type="Label" parent="gui"]
+margin_right = 40.0
+margin_bottom = 14.0
+custom_styles/normal = SubResource( 9 )
+
+[node name="Button" type="Button" parent="gui"]
+unique_name_in_owner = true
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -22.5
+margin_top = -10.0
+margin_right = 22.5
+margin_bottom = 10.0
+text = "QUIT"
+
+[node name="item_spawner" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.149971, -0.103577 )
+
+[node name="case" type="Position3D" parent="item_spawner"]
+transform = Transform( -4.37114e-08, 0, -1, 1.06581e-14, 1, -4.02341e-21, 1, -1.06581e-14, -4.37114e-08, 0.00824428, 1.04145, -3.49108 )
+
+[node name="Case-Sentinel XX" parent="item_spawner/case" instance=ExtResource( 10 )]
+
+[node name="case2" type="Position3D" parent="item_spawner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.104803, 1.06579, -3.00894 )
+
+[node name="Memory-Striker D" parent="item_spawner/case2" instance=ExtResource( 9 )]
+
+[node name="case3" type="Position3D" parent="item_spawner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.30945, 1.06579, -2.74379 )
+
+[node name="Storage-Striker HS" parent="item_spawner/case3" instance=ExtResource( 7 )]
+
+[node name="case4" type="Position3D" parent="item_spawner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.964585, 1.06579, -2.94019 )
+
+[node name="CPU Cooler-Fujin Black" parent="item_spawner/case4" instance=ExtResource( 3 )]
+
+[node name="case5" type="Position3D" parent="item_spawner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.659545, 1.06579, -2.83301 )
+
+[node name="CPU-Ino G7-4779k" parent="item_spawner/case5" instance=ExtResource( 6 )]
+
+[node name="case6" type="Position3D" parent="item_spawner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.17537, 1.06579, -2.88323 )
+
+[node name="Motherboard-MEGABYTE Z99 GH-08" parent="item_spawner/case6" instance=ExtResource( 11 )]
+
+[node name="case7" type="Position3D" parent="item_spawner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.289778, 1.06579, -2.66651 )
+
+[node name="PSU-VEGA UnlimitedPower2" parent="item_spawner/case7" instance=ExtResource( 2 )]
+
+[node name="case8" type="Position3D" parent="item_spawner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.54993, 1.06579, -3.73989 )
+
+[node name="case9" type="Position3D" parent="item_spawner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75604, 1.06579, -2.79179 )
+
+[node name="case10" type="Position3D" parent="item_spawner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24396, 1.06579, -2.79179 )
+
+[node name="case11" type="Position3D" parent="item_spawner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.71145, 1.06579, -2.79179 )
+
+[connection signal="pressed" from="gui/Button" to="." method="_on_Button_pressed"]
+
+[editable path="player"]

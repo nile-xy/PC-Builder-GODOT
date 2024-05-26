@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://item/components/component.tscn" type="PackedScene" id=1]
+[ext_resource path="res://item/components/motherboard.gd" type="Script" id=2]
+
+[node name="Motherboard" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="s-Memory" type="Position3D" parent="slots" index="0"]
+
+[node name="s-CPU" type="Position3D" parent="slots" index="1"]
+
+[node name="s-CPU Cooler" type="Position3D" parent="slots" index="2"]

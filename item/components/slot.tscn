@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://item/components/slot.gd" type="Script" id=1]
+
+[sub_resource type="BoxShape" id=1]
+resource_local_to_scene = true
+extents = Vector3( 0.287956, 0.0155646, 0.292946 )
+
+[node name="slot" type="Area" groups=["slot"]]
+script = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, -2.2215e-28, 1, 0, 0, 0, 1, 0, 0, 0.0202327 )
+shape = SubResource( 1 )
+
+[node name="Position3D" type="Position3D" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_slot_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_slot_area_exited"]

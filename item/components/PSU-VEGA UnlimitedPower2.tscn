@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://item/components/PSU.tscn" type="PackedScene" id=2]
+
+[node name="PSU-VEGA UnlimitedPower2" instance=ExtResource( 2 )]
+
+[node name="psu" parent="visual" index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0984767, 0 )

@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://item/components/component.tscn" type="PackedScene" id=1]
+[ext_resource path="res://item/components/psu.gd" type="Script" id=2]
+[ext_resource path="res://item/components/models/model_starter_psu.tscn" type="PackedScene" id=3]
+
+[node name="PSU" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="psu" parent="visual" index="0" instance=ExtResource( 3 )]

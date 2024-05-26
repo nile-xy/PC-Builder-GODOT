@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://item/components/component.tscn" type="PackedScene" id=1]
+[ext_resource path="res://item/components/case.gd" type="Script" id=2]
+
+[node name="Case" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="s-Motherboard" type="Position3D" parent="slots" index="0"]
+
+[node name="s-PSU" type="Position3D" parent="slots" index="1"]
+
+[node name="s-Storage" type="Position3D" parent="slots" index="2"]
+
+[node name="s-Case Cover" type="Position3D" parent="slots" index="3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.233858, 0.524845, -0.00920779 )

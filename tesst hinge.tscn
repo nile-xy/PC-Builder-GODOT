@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=2]
+
+[sub_resource type="BoxShape" id=13]
+extents = Vector3( 0.174358, 0.207463, 0.239624 )
+
+[sub_resource type="CubeMesh" id=14]
+
+[sub_resource type="BoxShape" id=15]
+extents = Vector3( 0.3034, 0.304677, 0.193841 )
+
+[sub_resource type="CubeMesh" id=16]
+
+[sub_resource type="CylinderMesh" id=17]
+
+[node name="test_hinge" type="Spatial"]
+
+[node name="StaticBody" type="KinematicBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.679325, 0, -8.44405 )
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+shape = SubResource( 13 )
+
+[node name="MeshInstance" type="MeshInstance" parent="StaticBody"]
+transform = Transform( 0.161324, 0, 0, 0, 0.155308, 0, 0, 0, 0.26848, 0, 0, 0 )
+mesh = SubResource( 14 )
+
+[node name="RigidBody" type="RigidBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.64978, 0, -8.56777 )
+
+[node name="CollisionShape" type="CollisionShape" parent="RigidBody"]
+shape = SubResource( 15 )
+
+[node name="MeshInstance" type="MeshInstance" parent="RigidBody"]
+transform = Transform( 0.290433, 0, 0, 0, 0.249865, 0, 0, 0, 0.239639, 0, 0, 0 )
+mesh = SubResource( 16 )
+
+[node name="HingeJoint" type="HingeJoint" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.09836, 0, -7.83446 )
+nodes/node_a = NodePath("../StaticBody")
+nodes/node_b = NodePath("../RigidBody")
+angular_limit/enable = true
+
+[node name="MeshInstance" type="MeshInstance" parent="HingeJoint"]
+transform = Transform( 0.142258, 0, 0, 0, 0.142258, 0, 0, 0, 0.142258, 0, 0, 0 )
+mesh = SubResource( 17 )

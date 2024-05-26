@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://item/components/component.gd" type="Script" id=1]
+
+[node name="component" type="Spatial"]
+script = ExtResource( 1 )
+placeholder_albedo = Color( 0.247059, 0.431373, 0.996078, 0.784314 )
+
+[node name="slots" type="Spatial" parent="."]
+
+[node name="visual" type="Spatial" parent="."]
